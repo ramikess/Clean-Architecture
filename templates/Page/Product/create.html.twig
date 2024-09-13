@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>{{ viewModel.product.id }}</td>
+            <td>{{ viewModel.product.name }}</td>
+            <td>{{ viewModel.product.description }}</td>
+        </tr>
+    </table>
+{% endblock body %}
