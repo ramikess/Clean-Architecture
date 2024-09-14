@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Product\Response;
+namespace App\Application\DTO;
 
 use App\Domain\Entity\Product;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Product\Update;
+namespace App\Application\DTO;
 
 class UpdateProductPriceRequest
 {

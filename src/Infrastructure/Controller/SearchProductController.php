@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller;
 
-use App\Application\UseCase\Product\Present\ProductPresenterInterface;
-use App\Application\UseCase\Product\Search\SearchProduct;
-use App\Application\UseCase\Product\Search\SearchProductRequest;
+use App\Application\DTO\SearchProductRequest;
+use App\Application\Present\ProductPresenterInterface;
+use App\Application\UseCase\Product\SearchProduct;
 use App\UserInterface\View\Product\ProductHtmlView;
-use App\UserInterface\View\Product\ProductJsonView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

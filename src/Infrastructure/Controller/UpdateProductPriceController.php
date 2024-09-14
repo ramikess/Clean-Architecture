@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller;
 
-use App\Application\UseCase\Product\Present\ProductPresenterInterface;
-use App\Application\UseCase\Product\Update\UpdateProductPrice;
-use App\Application\UseCase\Product\Update\UpdateProductPriceRequest;
+use App\Application\DTO\UpdateProductPriceRequest;
+use App\Application\Present\ProductPresenterInterface;
+use App\Application\UseCase\Product\UpdateProductPrice;
 use App\UserInterface\View\Product\ProductJsonView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Product\Update;
+namespace App\Application\UseCase\Product;
 
-use App\Application\UseCase\Product\Present\ProductPresenterInterface;
-use App\Application\UseCase\Product\Response\ProductResponse;
+use App\Application\DTO\ProductResponse;
+use App\Application\DTO\UpdateProductPriceRequest;
+use App\Application\Present\ProductPresenterInterface;
 use App\Domain\Repository\ProductRepositoryInterface;
 
 class UpdateProductPrice

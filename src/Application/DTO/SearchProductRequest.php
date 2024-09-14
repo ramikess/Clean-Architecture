@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\UseCase\Product\Search;
+namespace App\Application\DTO;
 
 class SearchProductRequest
 {

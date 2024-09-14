@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Application\UseCase\Product\Create;
+namespace App\Application\UseCase\Product;
 
-use App\Application\UseCase\Product\Present\ProductPresenterInterface;
-use App\Application\UseCase\Product\Response\ProductResponse;
+use App\Application\DTO\CreateProductRequest;
+use App\Application\DTO\ProductResponse;
+use App\Application\Present\ProductPresenterInterface;
 use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
 
