@@ -29,7 +29,7 @@ class CreateProductController
 
         $request = new CreateProductRequest(
             $request->get('name'),
-            $request->get('price'),
+            (int)$request->get('price'),
             $request->get('description'),
         );
 
