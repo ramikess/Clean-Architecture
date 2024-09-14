@@ -10,4 +10,5 @@ interface ProductRepositoryInterface
 {
     public function saveProduct(ProductDomain $entry): void;
     public function searchProduct(int $id): ProductDomain;
+    public function flush(): void;
 }

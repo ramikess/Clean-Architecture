@@ -25,6 +25,11 @@ class ProductRepository implements ProductRepositoryInterface
         $this->entityManager->flush();
     }
 
+    public function flush(): void
+    {
+        $this->entityManager->flush();
+    }
+
     public function searchProduct(int $id): Product
     {
         return $this->entityManager->getRepository(Product::class)->find($id);
