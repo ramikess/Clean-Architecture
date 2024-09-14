@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
     name: 'app_update_product_price',
     methods: [Request::METHOD_PATCH],
 )]
-class UpdatePriceProductController
+class UpdateProductPriceController
 {
     public function __invoke(
         UpdateProductPrice $updateProductPrice,
