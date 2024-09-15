@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Controller\User;
 
 use App\Application\DTO\User\CreateUserRequest;
-use App\Application\UseCase\Present\UserPresentInterface;
+use App\Application\Present\UserPresentInterface;
 use App\Application\UseCase\User\CreateUser;
 use App\UserInterface\View\User\UserJsonView;
 use Symfony\Component\HttpFoundation\Request;

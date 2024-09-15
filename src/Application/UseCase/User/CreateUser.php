@@ -6,7 +6,7 @@ namespace App\Application\UseCase\User;
 
 use App\Application\DTO\User\CreateUserRequest;
 use App\Application\DTO\User\UserResponse;
-use App\Application\UseCase\Present\UserPresentInterface;
+use App\Application\Present\UserPresentInterface;
 use App\Domain\Entity\User;
 use App\Domain\Repository\UserRepositoryInterface;
 
