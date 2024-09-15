@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\UserInterface\View\Product;
+namespace App\UserInterface\View\User;
 
-use App\Application\DTO\Product\ProductResponse;
+use App\Application\DTO\User\UserResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class ProductJsonView implements ProductViewInterface
+class UserJsonView
 {
     public function __construct(
         private readonly SerializerInterface $serializer
     ) { }
 
-    public function generateResponse(ProductResponse $response): Response
+    public function generateResponse(UserResponse $response): Response
     {
         return new JsonResponse(data: $this->serializer->serialize($response, 'json'), json: true);
     }

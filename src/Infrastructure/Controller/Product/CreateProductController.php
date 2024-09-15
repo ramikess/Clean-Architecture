@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Controller;
+namespace App\Infrastructure\Controller\Product;
 
-use App\Application\DTO\CreateProductRequest;
+use App\Application\DTO\Product\CreateProductRequest;
 use App\Application\Present\ProductPresenterInterface;
 use App\Application\UseCase\Product\CreateProduct;
 use App\UserInterface\View\Product\ProductJsonView;

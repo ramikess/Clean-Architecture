@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Product;
 
-use App\Application\DTO\ProductResponse;
-use App\Application\DTO\UpdateProductPriceRequest;
+use App\Application\DTO\Product\ProductResponse;
+use App\Application\DTO\Product\UpdateProductPriceRequest;
 use App\Application\Present\ProductPresenterInterface;
 use App\Domain\Repository\ProductRepositoryInterface;
 

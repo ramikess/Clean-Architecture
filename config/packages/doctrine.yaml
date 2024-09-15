@@ -22,7 +22,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Entity'
                 prefix: 'App\Domain\Entity'
                 alias: Product
-
+            User:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Entity'
+                prefix: 'App\Domain\Entity'
+                alias: User
 when@test:
     doctrine:
         dbal:

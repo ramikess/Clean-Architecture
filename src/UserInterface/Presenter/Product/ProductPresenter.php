@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\UserInterface\Presenter\Product;
 
-use App\Application\DTO\ProductResponse;
+use App\Application\DTO\Product\ProductResponse;
 use App\Application\Present\ProductPresenterInterface;
 
 class ProductPresenter implements ProductPresenterInterface
