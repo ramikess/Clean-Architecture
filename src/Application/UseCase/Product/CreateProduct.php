@@ -1,28 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\UseCase\Product;
 
 use App\Application\Command\Product\CreateProductRequest;
 use App\Application\Command\Product\ProductResponse;
 use App\Application\Present\ProductPresenterInterface;
+use App\Application\Service\ProductService;
 use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
 
 class CreateProduct
 {
     public function __construct(
-        private readonly ProductRepositoryInterface $productRepository
+        private readonly ProductRepositoryInterface $productRepository,
+        private readonly ProductService $productService
     ) { }
 
     public function execute(CreateProductRequest $request, ProductPresenterInterface $presenter): void
     {
-        $product = new Product();
-        $product->setName($request->getName());
-        $product->setPrice($request->getPrice());
-        $product->setDescription($request->getDescription());
-
+        $product = $this->productService->createProduct($request);
         $this->productRepository->saveProduct($product);
-
         $presenter->present(new ProductResponse($product));
     }
 }

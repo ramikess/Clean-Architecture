@@ -9,6 +9,7 @@ class Product
     private int $id;
     private string $name;
     private int $price;
+    private int $quantity;
     private string $description;
 
     public function getId(): int
@@ -39,6 +40,16 @@ class Product
     public function setPrice(int $price): void
     {
         $this->price = $price;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): void
+    {
+        $this->quantity = $quantity;
     }
 
     public function getDescription(): string
