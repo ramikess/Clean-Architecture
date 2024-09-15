@@ -11,6 +11,7 @@
 
         <field name="name" type="string" length="255" column="name"/>
         <field name="price" type="integer" column="price"/>
+        <field name="quantity" type="integer" column="quantity"/>
         <field name="description" type="text" column="description"/>
     </entity>
 </doctrine-mapping>
