@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Present;
 
-use App\Application\DTO\User\UserResponse;
+use App\Application\Command\User\UserResponse;
 
 interface UserPresentInterface
 {

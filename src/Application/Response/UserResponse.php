@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\DTO\User;
+namespace App\Application\Command\User;
 
 use App\Domain\Entity\User;
 

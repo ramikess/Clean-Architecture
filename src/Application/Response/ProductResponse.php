@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\DTO\Product;
+namespace App\Application\Command\Product;
 
 use App\Domain\Entity\Product;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\DTO\User;
+namespace App\Application\Command\User;
 
 class CreateUserRequest
 {
@@ -32,7 +32,4 @@ class CreateUserRequest
     {
         return $this->password;
     }
-
-
-
 }

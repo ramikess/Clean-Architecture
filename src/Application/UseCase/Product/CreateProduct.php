@@ -2,8 +2,8 @@
 
 namespace App\Application\UseCase\Product;
 
-use App\Application\DTO\Product\CreateProductRequest;
-use App\Application\DTO\Product\ProductResponse;
+use App\Application\Command\Product\CreateProductRequest;
+use App\Application\Command\Product\ProductResponse;
 use App\Application\Present\ProductPresenterInterface;
 use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
