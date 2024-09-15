@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller\Product;
 
-use App\Application\DTO\Product\SearchProductRequest;
+use App\Application\Command\Product\SearchProductRequest;
 use App\Application\Present\ProductPresenterInterface;
 use App\Application\UseCase\Product\SearchProduct;
 use App\UserInterface\View\Product\ProductHtmlView;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller\User;
 
-use App\Application\DTO\User\CreateUserRequest;
+use App\Application\Command\User\CreateUserRequest;
 use App\Application\Present\UserPresentInterface;
 use App\Application\UseCase\User\CreateUser;
 use App\UserInterface\View\User\UserJsonView;

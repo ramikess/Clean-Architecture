@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller\Product;
 
-use App\Application\DTO\Product\UpdateProductPriceRequest;
+use App\Application\Command\Product\UpdateProductPriceRequest;
 use App\Application\Present\ProductPresenterInterface;
 use App\Application\UseCase\Product\UpdateProductPrice;
 use App\UserInterface\View\Product\ProductJsonView;
