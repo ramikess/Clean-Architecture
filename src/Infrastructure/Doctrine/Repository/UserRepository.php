@@ -14,7 +14,7 @@ class UserRepository implements UserRepositoryInterface
         private readonly EntityManagerInterface $entityManager
     ) { }
 
-    public function saveUser(User $entry): void
+    public function saveUser(User $entry): User
     {
         $user = new User();
         $user->setEmail($entry->getEmail());
@@ -24,5 +24,12 @@ class UserRepository implements UserRepositoryInterface
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+        return $user;
+    }
+
+    public function find(int $userId): User
+    {
+        return $this->entityManager->getRepository(User::class)->find($userId);
     }
 }

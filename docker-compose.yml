@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  php:
+  ddd-php:
     build: docker/php
-    container_name: php
+    container_name: ddd-php
     volumes:
       - .:/var/www/symfony:delegated
     working_dir: /var/www/symfony
     networks:
       - symfony
 
-  nginx:
+  ddd-nginx:
     build: docker/nginx
-    container_name: nginx
+    container_name: ddd-nginx
     ports:
       - "8182:80"
     volumes:
@@ -20,11 +20,11 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - .:/var/www/symfony:delegated
     depends_on:
-      - php
+      - ddd-php
     networks:
       - symfony
 
-  database:
+  ddd-database:
     build: docker/mysql
     ports:
       - 3308:3306
@@ -40,6 +40,23 @@ services:
     command: [
       "--wait_timeout=28800",
     ]
+  ddd-rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'  # Pour l'interface de gestion
+    environment:
+      RABBITMQ_DEFAULT_USER: rami
+      RABBITMQ_DEFAULT_PASS: rami
+    networks:
+      - symfony
+  ddd-mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "18080:1080"  # Interface Web de MailCatcher
+      - "18025:1025"  # Serveur SMTP
+    networks:
+      - symfony
 
 networks:
   symfony:

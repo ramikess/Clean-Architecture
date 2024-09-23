@@ -15,4 +15,4 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Set timezone
 RUN rm /etc/localtime && \
     ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime && \
-    "date"
+    date

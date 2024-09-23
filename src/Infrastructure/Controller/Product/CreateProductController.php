@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(
     path: '/product',
     name: 'app_product_create',
-    methods: [Request::METHOD_POST],
+    methods: [Request::METHOD_GET],
 )]
 class CreateProductController
 {
@@ -26,7 +26,6 @@ class CreateProductController
         ProductJsonView           $view
     ): Response
     {
-
         $request = new CreateProductRequest(
             $request->get('name'),
             (int)$request->get('price'),
