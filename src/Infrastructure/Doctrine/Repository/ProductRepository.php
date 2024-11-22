@@ -20,7 +20,8 @@ class ProductRepository implements ProductRepositoryInterface
         $product->setName($entry->getName());
         $product->setPrice($entry->getPrice());
         $product->setDescription($entry->getDescription());
-
+        $product->setQuantity($entry->getQuantity());
+        
         $this->entityManager->persist($product);
         $this->entityManager->flush();
     }

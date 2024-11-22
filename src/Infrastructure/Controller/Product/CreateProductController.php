@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(
     path: '/product',
     name: 'app_product_create',
-    methods: [Request::METHOD_GET],
+    methods: [Request::METHOD_POST],
 )]
 class CreateProductController
 {
@@ -30,6 +30,7 @@ class CreateProductController
             $request->get('name'),
             (int)$request->get('price'),
             $request->get('description'),
+            (int)$request->get('quantity'),
         );
 
         $createProduct->execute($request, $presenter);

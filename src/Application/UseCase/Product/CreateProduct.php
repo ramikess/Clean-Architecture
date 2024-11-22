@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Application\UseCase\Product;
 
 use App\Application\Command\Product\CreateProductRequest;
-use App\Application\Command\Product\ProductResponse;
 use App\Application\Present\ProductPresenterInterface;
+use App\Application\Response\ProductResponse;
 use App\Application\Service\ProductService;
-use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
 
 class CreateProduct

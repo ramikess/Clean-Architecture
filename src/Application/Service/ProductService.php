@@ -19,6 +19,7 @@ class ProductService
         $product->setName($request->getName());
         $product->setPrice($request->getPrice());
         $product->setDescription($request->getDescription());
+        $product->setQuantity($request->getQuantity());
 
         return $product;
     }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\UserInterface\View\Product;
 
-use App\Application\Command\Product\ProductResponse;
+use App\Application\Response\ProductResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 class ProductHtmlView implements ProductViewInterface
 {
     public function __construct(
-        private Environment $environment
+        private readonly Environment $environment
     ) { }
 
     public function generateResponse(ProductResponse $response): Response

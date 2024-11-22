@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller\Product;
 
-use App\Application\Command\Product\SearchProductRequest;
 use App\Application\Present\ProductPresenterInterface;
+use App\Application\Query\SearchProductRequest;
 use App\Application\UseCase\Product\SearchProduct;
 use App\UserInterface\View\Product\ProductHtmlView;
 use Symfony\Component\HttpFoundation\Request;

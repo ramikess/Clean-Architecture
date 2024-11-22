@@ -9,7 +9,8 @@ class CreateProductRequest
     public function __construct(
         private readonly string $name,
         private readonly int    $price,
-        private readonly string $description
+        private readonly string $description,
+        private readonly int $quantity,
     ) { }
 
     public function getName(): string
@@ -25,5 +26,10 @@ class CreateProductRequest
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
     }
 }

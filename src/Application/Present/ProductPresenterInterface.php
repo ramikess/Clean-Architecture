@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Present;
 
-use App\Application\Command\Product\ProductResponse;
+use App\Application\Response\ProductResponse;
 
 interface ProductPresenterInterface
 {
