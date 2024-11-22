@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase\Product;
 
-use App\Application\Command\Product\ProductResponse;
 use App\Application\Present\ProductPresenterInterface;
 use App\Application\Query\SearchProductRequest;
+use App\Application\Response\ProductResponse;
 use App\Domain\Repository\ProductRepositoryInterface;
 
 class SearchProduct
