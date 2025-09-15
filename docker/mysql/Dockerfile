@@ -1,4 +1,4 @@
-FROM mysql:5.7-debian
+FROM mysql:8.0-debian
 
 RUN echo '-= BUILD MYSQL IMAGE =-'
 

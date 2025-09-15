@@ -3,22 +3,6 @@ framework:
         transports:
             async_tasks:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                options:
-                    exchange:
-                        name: 'app_async_tasks'
-                        type: 'fanout'
-                    queues:
-                        app_async_tasks: ~
-
-            domain_events:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                options:
-                    exchange:
-                        name: 'domain_events'
-                        type: 'fanout'
-                    queues:
-                        domain_events: ~
 
         routing:
-            'App\Application\MessageBus\ProcessAsynchronouslyInterface': async_tasks
-          #  'App\Message\DomainEventInterface': domain_events
+            'App\Account\Domain\Event\UserRegistered': async_tasks

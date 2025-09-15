@@ -1,0 +1,26 @@
+{% extends '@Account/base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+
+        <div class="text-center mb-5">
+            <h1 class="mb-3">Bienvenue</h1>
+        </div>
+
+
+        {# Bloc login/register visible si non connecté #}
+        {% if app.user is null %}
+            <div class="row text-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg w-100">Se connecter</a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ path('app_register') }}" class="btn btn-success btn-lg w-100">S’inscrire</a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

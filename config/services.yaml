@@ -14,10 +14,5 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
-
-    App\Infrastructure\Controller\:
-        resource: '../src/Infrastructure/Controller/'
-        tags: [ 'controller.service_arguments' ]
 

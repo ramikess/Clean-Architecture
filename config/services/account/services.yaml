@@ -1,0 +1,7 @@
+services:
+  App\Account\UserInterface\Controller\:
+    resource: '../src/Account/UserInterface/Controller/'
+    tags: [ 'controller.service_arguments' ]
+
+  App\Account\Application\Event\EventPublisherInterface:
+    class: App\Account\Infrastructure\Event\MessengerEventPublisher
