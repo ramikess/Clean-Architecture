@@ -25,6 +25,7 @@ services:
       - symfony
 
   ddd-database:
+    container_name: ddd-db
     build: docker/mysql
     ports:
       - 3308:3306
@@ -41,6 +42,7 @@ services:
       "--wait_timeout=28800",
     ]
   ddd-rabbitmq:
+    container_name: ddd-rabbitmq
     image: rabbitmq:3-management
     ports:
       - '5672:5672'
