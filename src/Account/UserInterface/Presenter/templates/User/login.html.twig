@@ -11,11 +11,11 @@
                 <h1 class="mb-4 text-center">Login</h1>
 
                 {# Messages flash error #}
-                {% for message in app.flashes('error') %}
+                {% if error_message %}
                     <div class="alert alert-danger">
-                        {{ message }}
+                        {{ error_message }}
                     </div>
-                {% endfor %}
+                {% endif %}
 
                 <form method="post" action="{{ path('app_login') }}">
                     {# CSRF token #}
