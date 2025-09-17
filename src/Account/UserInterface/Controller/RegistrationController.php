@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/register', name: 'app_register')]
 class RegistrationController extends AbstractController
 {
-    
+
     public function __invoke(Request $request, RegisterUserUseCase $registerUser): Response|RedirectResponse
     {
         if ($this->getUser() !== null) {
