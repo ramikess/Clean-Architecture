@@ -7,6 +7,7 @@ namespace App\Account\Application\UseCase;
 use App\Account\Application\Event\EventPublisherInterface;
 use App\Account\Domain\Aggregate\User;
 use App\Account\Domain\Event\UserRegistered;
+use App\Account\Domain\Repository\UserRepositoryContract;
 use App\Account\Infrastructure\Security\PasswordHasher;
 use App\Account\Infrastructure\Security\PasswordUserAdapter;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,8 +16,8 @@ class RegisterUserUseCase
 {
     public function __construct(
         private readonly PasswordHasher          $passwordHasher,
-        private readonly EntityManagerInterface  $entityManager,
         private readonly EventPublisherInterface $eventPublisher,
+        private readonly UserRepositoryContract  $userRepository
     ) {}
 
     public function __invoke(string $email, string $plainPassword): void
@@ -28,8 +29,7 @@ class RegisterUserUseCase
         $hashedPassword = $this->passwordHasher->hashPassword($userAdapter, $plainPassword);
         $user->setPassword($hashedPassword);
 
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
+        $this->userRepository->save($user);
 
         $this->eventPublisher->publish(new UserRegistered(
             $user->getEmail()
