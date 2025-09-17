@@ -8,6 +8,7 @@ use App\Account\Application\Exception\EmailAlreadyUsedException;
 use App\Account\Application\UseCase\RegisterUserUseCase;
 use App\Account\Infrastructure\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,13 +35,13 @@ class RegistrationController extends AbstractController
 
             try {
                 $registerUser($email, $plainPassword);
+
+                $this->addFlash('success', 'Your account has been successfully created!');
+                return $this->redirectToRoute('app_login');
+
             } catch (EmailAlreadyUsedException $exception) {
-                $this->addFlash('error', $exception->getMessage());
+                $form->get('email')->addError(new FormError($exception->getMessage()));
             }
-
-            $this->addFlash('success', 'Your account has been successfully created!');
-
-            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('@Account/User/register.html.twig', [
