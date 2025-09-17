@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Account\UserInterface\Controller;
 
+use App\Account\Application\Exception\EmailAlreadyUsedException;
 use App\Account\Application\UseCase\RegisterUserUseCase;
 use App\Account\Infrastructure\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,9 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
 
+    /**
+     * @throws EmailAlreadyUsedException
+     */
     public function __invoke(Request $request, RegisterUserUseCase $registerUser): Response|RedirectResponse
     {
         if ($this->getUser() !== null) {
@@ -28,7 +32,11 @@ class RegistrationController extends AbstractController
             $email = $form->get('email')->getData();
             $plainPassword = $form->get('plainPassword')->getData();
 
-            $registerUser($email, $plainPassword);
+            try {
+                $registerUser($email, $plainPassword);
+            } catch (EmailAlreadyUsedException $exception) {
+                $this->addFlash('error', $exception->getMessage());
+            }
 
             $this->addFlash('success', 'Your account has been successfully created!');
 

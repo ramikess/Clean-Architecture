@@ -9,4 +9,5 @@ use App\Account\Domain\Aggregate\User;
 interface UserRepositoryContract
 {
     public function save(User $user): void;
+    public function findByEmail(string $email): User;
 }

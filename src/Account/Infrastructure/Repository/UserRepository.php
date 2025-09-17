@@ -10,7 +10,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UserRepository implements UserRepositoryContract
 {
-
     public function __construct(
         private readonly EntityManagerInterface $entityManager
     ) {}
@@ -19,5 +18,10 @@ class UserRepository implements UserRepositoryContract
     {
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+    }
+
+    public function findByEmail(string $email): User
+    {
+        return $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
     }
 }
