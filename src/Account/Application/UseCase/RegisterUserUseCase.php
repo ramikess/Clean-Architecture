@@ -10,7 +10,6 @@ use App\Account\Domain\Event\UserRegistered;
 use App\Account\Domain\Repository\UserRepositoryContract;
 use App\Account\Infrastructure\Security\PasswordHasher;
 use App\Account\Infrastructure\Security\PasswordUserAdapter;
-use Doctrine\ORM\EntityManagerInterface;
 
 class RegisterUserUseCase
 {
