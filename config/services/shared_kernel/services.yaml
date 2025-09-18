@@ -1,0 +1,4 @@
+services:
+  App\SharedKernel\UserInterface\Controller\:
+    resource: '../src/SharedKernel/UserInterface/Controller/'
+    tags: [ 'controller.service_arguments' ]

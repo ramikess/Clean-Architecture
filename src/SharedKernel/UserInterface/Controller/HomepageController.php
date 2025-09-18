@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Account\UserInterface\Controller;
+namespace App\SharedKernel\UserInterface\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +13,6 @@ class HomepageController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('@Account/Homepage/index.html.twig');
+        return $this->render('@SharedKernel/Homepage/index.html.twig');
     }
 }

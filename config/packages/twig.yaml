@@ -3,6 +3,7 @@ twig:
     default_path: '%kernel.project_dir%/src/Account/UserInterface/Presenter/templates'
     paths:
         '%kernel.project_dir%/src/Account/UserInterface/Presenter/templates': Account
+        '%kernel.project_dir%/src/SharedKernel/UserInterface/Presenter/templates': SharedKernel
 
 when@test:
     twig:
