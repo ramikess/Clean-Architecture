@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+
+  App\Catalog\:
+    resource: '../../../src/Catalog/*'
+    exclude:
+      - '../../../src/Catalog/Domain/{Aggregate}'
+      - '../../../src/Catalog/Infrastructure/{Doctrine}'
+      - '../../../src/Catalog/UserInterface/{Command}'
+
+
+  App\Catalog\UserInterface\Controller\:
+    resource: '../src/Catalog/UserInterface/Controller/'
+    tags: [ 'controller.service_arguments' ]

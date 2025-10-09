@@ -22,6 +22,18 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Account/Infrastructure/Doctrine/Mapping'
                 prefix: 'App\Account\Domain\Aggregate'
                 alias: User
+            Product:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine/Mapping'
+                prefix: 'App\Catalog\Domain\Aggregate'
+                alias: Product
+            ProcessedMessage:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/SharedKernel/MessengerMonitor/Entity'
+                prefix: 'App\SharedKernel\MessengerMonitor\Entity'
+                alias: MessengerMonitor
 when@test:
     doctrine:
         dbal:

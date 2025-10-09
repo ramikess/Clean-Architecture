@@ -20,7 +20,7 @@ class UserRepository implements UserRepositoryContract
         $this->entityManager->flush();
     }
 
-    public function findByEmail(string $email): User
+    public function findByEmail(string $email): ?User
     {
         return $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
     }

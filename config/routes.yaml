@@ -1,13 +1,17 @@
+controllers_sharedKernel:
+    resource:
+        path: ../src/SharedKernel/UserInterface/Controller/
+        namespace: App\SharedKernel\UserInterface\Controller
+    type: attribute
 controllers_account:
     resource:
         path: ../src/Account/UserInterface/Controller/
         namespace: App\Account\UserInterface\Controller
     type: attribute
-
-controllers_sharedKernel:
+controllers_catalog:
     resource:
-        path: ../src/SharedKernel/UserInterface/Controller/
-        namespace: App\SharedKernel\UserInterface\Controller
+        path: ../src/Catalog/UserInterface/Controller/
+        namespace: App\Catalog\UserInterface\Controller
     type: attribute
 
 app_logout:

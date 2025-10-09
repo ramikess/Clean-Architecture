@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Application\EventHandler;
+namespace App\Account\Infrastructure\EventHandler;
 
 use App\Account\Domain\Event\UserRegistered;
 use App\Account\Domain\Notification\NotificationInterface;
@@ -17,6 +17,6 @@ final class SendUserRegisteredNotificationHandler
 
     public function __invoke(UserRegistered $event): void
     {
-        $this->notification->send();
+       $this->notification->send($event->email);
     }
 }

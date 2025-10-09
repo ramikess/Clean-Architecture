@@ -1,8 +1,24 @@
 framework:
     messenger:
+
+        serializer:
+            default_serializer: messenger.transport.symfony_serializer
+            symfony_serializer:
+                format: json
+                context: { }
+
+        failure_transport: failed
+
         transports:
             async_tasks:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+                retry_strategy:
+                    max_retries: 2
+                    delay: 60000
+                    multiplier: 2
+                    max_delay: 0
+            sync: 'sync://'
+            failed: 'doctrine://default?queue_name=failed'
 
         routing:
             'App\Account\Domain\Event\UserRegistered': async_tasks

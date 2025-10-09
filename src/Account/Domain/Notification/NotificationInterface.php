@@ -6,5 +6,5 @@ namespace App\Account\Domain\Notification;
 
 interface NotificationInterface
 {
-    public function send(): void;
+    public function send(string $emailTo): void;
 }

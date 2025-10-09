@@ -13,14 +13,14 @@ class SendMailService implements NotificationInterface
     {
     }
 
-    public function send(): void
+    public function send(string $emailTo): void
     {
         $email = (new Email())
             ->from('hello@example.com')
-            ->to('you@example.com')
+            ->to($emailTo)
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
-            ->html('<p>Hello !</p>');
+            ->html("<p>Hello $emailTo!</p>");
 
         $this->mailer->send($email);
     }

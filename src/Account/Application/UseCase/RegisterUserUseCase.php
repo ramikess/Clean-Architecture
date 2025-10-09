@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Account\Application\UseCase;
 
-use App\Account\Application\Event\EventPublisherInterface;
 use App\Account\Application\Exception\EmailAlreadyUsedException;
 use App\Account\Domain\Aggregate\User;
 use App\Account\Domain\Event\UserRegistered;
 use App\Account\Domain\Repository\UserRepositoryContract;
 use App\Account\Infrastructure\Security\PasswordHasher;
 use App\Account\Infrastructure\Security\PasswordUserAdapter;
+use App\SharedKernel\Application\Event\EventPublisherInterface;
 
 class RegisterUserUseCase
 {
@@ -38,8 +38,9 @@ class RegisterUserUseCase
 
         $this->userRepository->save($user);
 
+        $delayInMs = 5 * 60 * 1000;
         $this->eventPublisher->publish(new UserRegistered(
             $user->getEmail()
-        ));
+        ), $delayInMs);
     }
 }
