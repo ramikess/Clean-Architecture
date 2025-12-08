@@ -15,7 +15,9 @@ add('writable_dirs', []);
 
 host('178.128.41.81')
     ->set('remote_user', 'master_cfmyeckyfg')
-    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html');
+    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html')
+    ->set('identity_file', '/home/master/.ssh/id_rsa')
+;
 
 // Hooks
 
