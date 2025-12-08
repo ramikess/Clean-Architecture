@@ -17,9 +17,9 @@ host('178.128.41.81')
 
 // 1️⃣ Upload .env.prod en .env.local avant le deploy:vendors
 task('deploy:upload_env', function () {
-    upload('.env.prod', '{{deploy_path}}/shared/.env.local');
-    run('chmod 600 {{deploy_path}}/shared/.env.local');
+    upload('.env.prod', '{{deploy_path}}/shared/.env.local', ['mode' => 0600, 'use_scp' => true]);
 });
+
 before('deploy:vendors', 'deploy:upload_env');
 
 // 2️⃣ Composer install en ignorant ext-amqp et en contournant cache:clear si besoin
