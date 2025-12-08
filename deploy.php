@@ -33,4 +33,4 @@ task('deploy:vendors', function () {
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
-after('deploy:vendors', 'success'); // optionnel, juste pour marquer fin de déploiement
+
