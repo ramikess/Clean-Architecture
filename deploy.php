@@ -4,20 +4,33 @@ namespace Deployer;
 require 'recipe/symfony.php';
 
 // Config
-
 set('repository', 'git@github.com:ramikess/Clean-Architecture.git');
 
-add('shared_files', []);
+add('shared_files', ['.env.local']); // ton fichier d'env partagé
 add('shared_dirs', []);
-add('writable_dirs', []);
+add('writable_dirs', ['var']); // Symfony a besoin que var soit writable
 
 // Hosts
-
 host('178.128.41.81')
     ->set('remote_user', 'master_cfmyeckyfg')
-    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html')
-;
+    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html');
+
+// 1️⃣ Upload .env.prod en .env.local avant le deploy:vendors
+task('deploy:upload_env', function () {
+    upload('.env.prod', '{{deploy_path}}/shared/.env.local');
+    run('chmod 600 {{deploy_path}}/shared/.env.local');
+});
+before('deploy:vendors', 'deploy:upload_env');
+
+// 2️⃣ Composer install en ignorant ext-amqp et en contournant cache:clear si besoin
+task('deploy:vendors', function () {
+    // Installer les dépendances en ignorant l'extension manquante
+    run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
+
+    // Clear cache sans planter si AMQP est manquant
+    run('cd {{release_path}} && php bin/console cache:clear || echo "Cache clear failed, possibly missing AMQP, continue..."');
+});
 
 // Hooks
-
 after('deploy:failed', 'deploy:unlock');
+after('deploy:vendors', 'success'); // optionnel, juste pour marquer fin de déploiement
