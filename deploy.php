@@ -15,12 +15,7 @@ host('178.128.41.81')
     ->set('remote_user', 'master_cfmyeckyfg')
     ->set('deploy_path', '~/applications/zqwhxgdehy/public_html');
 
-// 1️⃣ Upload .env.prod en .env.local avant le deploy:vendors
-task('deploy:upload_env', function () {
-    upload('.env.prod', '{{deploy_path}}/shared/.env.local', ['mode' => 0600, 'use_scp' => true]);
-});
-
-before('deploy:vendors', 'deploy:upload_env');
+before('deploy:vendors');
 
 // 2️⃣ Composer install en ignorant ext-amqp et en contournant cache:clear si besoin
 task('deploy:vendors', function () {
