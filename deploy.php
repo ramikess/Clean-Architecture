@@ -39,9 +39,7 @@ task('deploy:copy_env', function () {
 });
 
 // Installation des dépendances
-task('deploy:vendors', function () {
-    run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
-});
+
 
 
 // Cache clear sécurisé
@@ -59,7 +57,7 @@ task('deploy:cache_warmup', function () {
 // ============================================================================
 task('deploy', [
     'deploy:prepare',
-    'deploy:vendors',
+    
     'deploy:copy_env',
     'deploy:cache_safe',
     'deploy:cache_warmup',
