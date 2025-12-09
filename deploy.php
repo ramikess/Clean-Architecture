@@ -30,8 +30,8 @@ task('deploy:vendors', function () {
 
 // Copier .env.prod vers .env et .env.local si disponible
 task('deploy:copy_env', function () {
-    run('if [ -f {{release_path}}/.env.prod ]; then cp {{release_path}}/.env.prod {{release_path}}/.env; fi');
-    #run('if [ -f {{release_path}}/.env.prod ]; then cp {{release_path}}/.env.prod {{release_path}}/.env.local; fi');
+    run('cp {{release_path}}/.env.prod {{release_path}}/.env');
+    #run('cp {{release_path}}/.env.prod {{release_path}}/.env.local');
 });
 
 // Cache clear sécurisé
