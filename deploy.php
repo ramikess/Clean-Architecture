@@ -32,12 +32,15 @@ task('deploy:copy_env', function () {
     // Crée shared/.env s'il n'existe pas
     run('if [ ! -f {{deploy_path}}/shared/.env ]; then touch {{deploy_path}}/shared/.env; fi');
 
-    // Copie .env.prod vers shared/.env (uniquement si shared/.env est vide)
-    run('if [ ! -s {{deploy_path}}/shared/.env ]; then cp {{release_path}}/.env.prod {{deploy_path}}/shared/.env; fi');
+    // Affiche les chemins
+    writeln('Deploy path: {{deploy_path}}');
+    writeln('Release path: {{release_path}}');
 
-    // Crée le lien symbolique de shared/.env vers la release
-    run('ln -s {{deploy_path}}/shared/.env {{release_path}}/.env');
+    // Optionnel : aussi via run pour voir côté serveur
+    run('echo "Deploy path: {{deploy_path}}"');
+    run('echo "Release path: {{release_path}}"');
 });
+
 
 
 // Cache clear sécurisé
