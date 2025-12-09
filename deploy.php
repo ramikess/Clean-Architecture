@@ -28,10 +28,15 @@ task('deploy:vendors', function () {
     run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
 });
 
-// Copier .env.prod vers .env et .env.local si disponible
 task('deploy:copy_env', function () {
+    // Crée .env s'il n'existe pas
+    run('if [ ! -f {{release_path}}/.env ]; then touch {{release_path}}/.env; fi');
+
+    // Copie .env.prod vers .env
     run('cp {{release_path}}/.env.prod {{release_path}}/.env');
-    #run('cp {{release_path}}/.env.prod {{release_path}}/.env.local');
+
+    // Optionnel : copier vers .env.local si tu veux
+    // run('cp {{release_path}}/.env.prod {{release_path}}/.env.local');
 });
 
 // Cache clear sécurisé
