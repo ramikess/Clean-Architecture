@@ -29,15 +29,16 @@ task('deploy:vendors', function () {
 });
 
 task('deploy:copy_env', function () {
-    // Crée .env s'il n'existe pas
-    run('if [ ! -f {{release_path}}/.env ]; then touch {{release_path}}/.env; fi');
+    // Crée shared/.env s'il n'existe pas
+    run('if [ ! -f {{deploy_path}}/shared/.env ]; then touch {{deploy_path}}/shared/.env; fi');
 
-    // Copie .env.prod vers .env
-    run('cp {{release_path}}/.env.prod {{release_path}}/.env');
+    // Copie .env.prod vers shared/.env (uniquement si shared/.env est vide)
+    run('if [ ! -s {{deploy_path}}/shared/.env ]; then cp {{release_path}}/.env.prod {{deploy_path}}/shared/.env; fi');
 
-    // Optionnel : copier vers .env.local si tu veux
-    // run('cp {{release_path}}/.env.prod {{release_path}}/.env.local');
+    // Crée le lien symbolique de shared/.env vers la release
+    run('ln -s {{deploy_path}}/shared/.env {{release_path}}/.env');
 });
+
 
 // Cache clear sécurisé
 task('deploy:cache_safe', function () {
