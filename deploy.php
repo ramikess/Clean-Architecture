@@ -24,7 +24,9 @@ host('178.128.41.81')
 // ============================================================================
 
 // Installation des dépendances
-
+task('deploy:vendors', function () {
+    run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
+});
 
 task('deploy:copy_env', function () {
     // Crée shared/.env s'il n'existe pas
@@ -56,7 +58,7 @@ task('deploy:cache_warmup', function () {
 // ============================================================================
 task('deploy', [
     'deploy:prepare',
-
+    'deploy:vendors',
     'deploy:copy_env',
     'deploy:cache_safe',
     'deploy:cache_warmup',
