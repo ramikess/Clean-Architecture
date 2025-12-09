@@ -17,7 +17,10 @@ set('writable_dirs', ['var']);
 // ============================================================================
 host('178.128.41.81')
     ->set('remote_user', 'master_cfmyeckyfg')
-    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html');
+    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html')
+    ->setForwardAgent(false)  // Important pour GitHub Actions
+    ->setSshMultiplexing(false);  // Évite les problèmes de connexion
+;
 
 // ============================================================================
 // TASKS PERSONNALISÉES
