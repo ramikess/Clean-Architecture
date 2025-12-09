@@ -3,6 +3,7 @@
 /.idea
 /.idea/*
 /.env
+/.env.*
 /public/bundles/
 /var/
 /vendor/
