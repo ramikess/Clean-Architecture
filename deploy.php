@@ -8,17 +8,18 @@ require 'recipe/symfony.php';
 // ============================================================================
 set('repository', 'git@github.com:ramikess/Clean-Architecture.git');
 
-add('shared_files', []);
+add('shared_files', ['.env', '.env.local']);
 add('shared_dirs', []);
 set('writable_dirs', ['var']);
 
 // ============================================================================
 // HOST
 // ============================================================================
-host('178.128.41.81')
+// Production
+host('production')
+    ->setHostname('178.128.41.81')
     ->set('remote_user', 'master_cfmyeckyfg')
-    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html')
-;
+    ->set('deploy_path', '~/applications/zqwhxgdehy/public_html');
 
 // ============================================================================
 // TASKS PERSONNALISÉES
