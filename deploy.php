@@ -23,10 +23,7 @@ host('178.128.41.81')
 // TASKS PERSONNALISÉES
 // ============================================================================
 
-// Installation des dépendances
-task('deploy:vendors', function () {
-    run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
-});
+
 
 task('deploy:copy_env', function () {
     // Crée shared/.env s'il n'existe pas
@@ -41,6 +38,10 @@ task('deploy:copy_env', function () {
     run('echo "Release path: {{release_path}}"');
 });
 
+// Installation des dépendances
+task('deploy:vendors', function () {
+    run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
+});
 
 
 // Cache clear sécurisé
