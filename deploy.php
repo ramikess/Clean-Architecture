@@ -8,7 +8,7 @@ require 'recipe/symfony.php';
 // ============================================================================
 set('repository', 'git@github.com:ramikess/Clean-Architecture.git');
 
-add('shared_files', ['.env', '.env.local']);
+add('shared_files', []);
 add('shared_dirs', []);
 set('writable_dirs', ['var']);
 
