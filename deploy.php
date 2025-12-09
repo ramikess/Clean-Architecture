@@ -8,7 +8,7 @@ require 'recipe/symfony.php';
 // ============================================================================
 set('repository', 'git@github.com:ramikess/Clean-Architecture.git');
 
-add('shared_files', []);
+add('shared_files', ['.env', '.env.local']);
 add('shared_dirs', []);
 set('writable_dirs', ['var']);
 
@@ -30,20 +30,6 @@ task('deploy:vendors', function () {
     run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
 });
 
-task('deploy:copy_env', function () {
-    // Crée shared/.env s'il n'existe pas
-    run('if [ ! -f {{deploy_path}}/shared/.env ]; then touch {{deploy_path}}/shared/.env; fi');
-
-    // Copie .env.prod vers shared/.env
-    run('cp {{release_path}}/.env.prod {{deploy_path}}/shared/.env;');
-
-    // Copie .env.prod vers shared/.env.local)
-    run('cp {{release_path}}/.env.prod {{deploy_path}}/shared/.env.local');
-
-    // Crée le lien symbolique de shared/.env vers la release
-    run('ln -s {{deploy_path}}/shared/.env {{release_path}}/.env');
-});
-
 
 // Cache clear sécurisé
 task('deploy:cache_safe', function () {
@@ -60,7 +46,6 @@ task('deploy:cache_warmup', function () {
 // ============================================================================
 task('deploy', [
     'deploy:prepare',
-    'deploy:copy_env',
     'deploy:vendors',
     'deploy:cache_safe',
     'deploy:cache_warmup',
