@@ -13,18 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      - name: Add server to known_hosts
-        run: ssh-keyscan -H 178.128.41.81 >> ~/.ssh/known_hosts
-
-      - name: Test SSH
-        run: ssh -i ~/.ssh/id_rsa master_cfmyeckyfg@178.128.41.81 "echo OK"
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
