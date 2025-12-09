@@ -8,9 +8,9 @@ require 'recipe/symfony.php';
 // ============================================================================
 set('repository', 'git@github.com:ramikess/Clean-Architecture.git');
 
-add('shared_files', []);     // Pas de .env en shared
+add('shared_files', []);
 add('shared_dirs', []);
-add('writable_dirs', ['var']);
+set('writable_dirs', ['var']);
 
 // ============================================================================
 // HOST
@@ -28,18 +28,18 @@ task('deploy:vendors', function () {
     run('cd {{release_path}} && composer install --prefer-dist --no-dev --optimize-autoloader --ignore-platform-req=ext-amqp');
 });
 
-// Copier .env.prod vers .env et .env.local
+// Copier .env.prod vers .env et .env.local si disponible
 task('deploy:copy_env', function () {
-    run('cp {{release_path}}/.env.prod {{release_path}}/.env');
-    run('cp {{release_path}}/.env.prod {{release_path}}/.env.local');
+    run('if [ -f {{release_path}}/.env.prod ]; then cp {{release_path}}/.env.prod {{release_path}}/.env; fi');
+    run('if [ -f {{release_path}}/.env.prod ]; then cp {{release_path}}/.env.prod {{release_path}}/.env.local; fi');
 });
 
-// Cache clear sans blocage si un bundle manque (ex : AMQP)
+// Cache clear sécurisé
 task('deploy:cache_safe', function () {
     run('cd {{release_path}} && php bin/console cache:clear --no-warmup || echo "Cache clear warning, continue..."');
 });
 
-// Warmup cache
+// Cache warmup
 task('deploy:cache_warmup', function () {
     run('cd {{release_path}} && php bin/console cache:warmup || echo "Cache warmup warning, continue..."');
 });
@@ -60,3 +60,4 @@ task('deploy', [
 // HOOKS
 // ============================================================================
 after('deploy:failed', 'deploy:unlock');
+after('deploy:cache_warmup', 'success');
