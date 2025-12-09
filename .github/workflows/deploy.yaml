@@ -16,3 +16,6 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
           dep: deploy
           deployer-version: "7.5.12"  # ou la version que tu utilises
+
+
+          
