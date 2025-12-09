@@ -60,4 +60,3 @@ task('deploy', [
 // HOOKS
 // ============================================================================
 after('deploy:failed', 'deploy:unlock');
-after('deploy:cache_warmup', 'success');
