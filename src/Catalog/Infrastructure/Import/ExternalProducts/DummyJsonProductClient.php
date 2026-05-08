@@ -32,7 +32,7 @@ class DummyJsonProductClient implements ProductProviderInterface
                 externalId:  $item['id'],
                 title:       $item['title'],
                 description: $item['description'],
-                price:       $item['price'],
+                price:       $item['price'] * 100,
                 category:    $item['category'],
                 thumbnail:   $item['thumbnail'],
                 brand:       $item['brand'] ?? null,

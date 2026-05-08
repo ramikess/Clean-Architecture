@@ -12,7 +12,7 @@
         <field name="externalId" column="external_id" type="integer" nullable="false"/>
         <field name="title" column="title" type="string" length="255" nullable="false"/>
         <field name="description" column="description" type="text" nullable="false"/>
-        <field name="price" column="price" type="float" nullable="false"/>
+        <field name="price" column="price" type="integer" nullable="false"/>
         <field name="category" column="category" type="string" length="255" nullable="false"/>
         <field name="thumbnail" column="thumbnail" type="string" length="512" nullable="false"/>
         <field name="brand" column="brand" type="string" length="255" nullable="true"/>
