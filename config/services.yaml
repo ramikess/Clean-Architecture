@@ -9,10 +9,13 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
 
     App\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Kernel.php'
+
+
 

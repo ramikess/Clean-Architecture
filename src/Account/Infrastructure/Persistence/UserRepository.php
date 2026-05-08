@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Infrastructure\Repository;
+namespace App\Account\Infrastructure\Persistence;
 
 use App\Account\Domain\Aggregate\User;
 use App\Account\Domain\Repository\UserRepositoryContract;
