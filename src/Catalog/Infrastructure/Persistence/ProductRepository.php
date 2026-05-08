@@ -12,9 +12,23 @@ class ProductRepository implements ProductRepositoryInterface
         private readonly EntityManagerInterface $entityManager
     ) {}
 
-    public function findByExternalId(int $externalId): ?Product
+    public function findByExternalIds(array $externalIds): array
     {
-        return $this->entityManager->getRepository(Product::class)->findOneBy(['externalId' => $externalId]);
+        $products = $this->entityManager
+            ->getRepository(Product::class)
+            ->createQueryBuilder('p')
+            ->where('p.externalId IN (:externalIds)')
+            ->setParameter('externalIds', $externalIds)
+            ->getQuery()
+            ->getResult();
+
+        $indexedProducts = [];
+
+        foreach ($products as $product) {
+            $indexedProducts[$product->getExternalId()] = $product;
+        }
+
+        return $indexedProducts;
     }
 
     public function save(Product $product): void

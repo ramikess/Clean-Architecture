@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Catalog\Application\UseCase\ImportProducts;
 
+use App\Catalog\Domain\Aggregate\Product;
 use App\Catalog\Domain\ExternalCatalog\ProductProviderInterface;
 use App\Catalog\Domain\Repository\ProductRepositoryInterface;
 
-class ImportProductsUseCase
+final class ImportProductsUseCase
 {
-    private const BATCH_SIZE = 100;
+    private const DEFAULT_BATCH_SIZE = 100;
 
     public function __construct(
         private readonly ProductProviderInterface $productProvider,
@@ -19,25 +20,43 @@ class ImportProductsUseCase
 
     public function execute(ImportProductsRequest $request): int
     {
-        $skip  = $request->skip;
-        $total = 0;
+        $skip       = $request->skip;
+        $batchSize  = $request->limit ?: self::DEFAULT_BATCH_SIZE;
+        $totalCount = 0;
 
         do {
             $products = $this->productProvider->fetchAll(
-                limit: self::BATCH_SIZE,
+                limit: $batchSize,
                 skip: $skip,
             );
 
-            foreach ($products as $product) {
-                $existing = $this->productRepository->findByExternalId(
-                    $product->getExternalId()
-                );
+            $count = count($products);
 
-                if ($existing !== null) {
-                    $existing->update(
+            if ($count === 0) {
+                break;
+            }
+
+            $externalIds = array_map(
+                static fn ($product) => $product->getExternalId(),
+                $products
+            );
+
+            /**
+             * @var array<string, Product> $existingProducts
+             */
+            $existingProducts = $this->productRepository
+                ->findByExternalIds($externalIds);
+
+            foreach ($products as $product) {
+                $externalId = $product->getExternalId();
+
+                $existingProduct = $existingProducts[$externalId] ?? null;
+
+                if ($existingProduct !== null) {
+                    $existingProduct->update(
                         title: $product->getTitle(),
                         description: $product->getDescription(),
-                        price: (int) ($product->getPrice() * 100),
+                        price: (int) round($product->getPrice() * 100),
                         category: $product->getCategory(),
                         thumbnail: $product->getThumbnail(),
                         brand: $product->getBrand(),
@@ -53,12 +72,11 @@ class ImportProductsUseCase
 
             $this->productRepository->flush();
 
-            $count  = count($products);
-            $total += $count;
-            $skip  += $count;
+            $totalCount += $count;
+            $skip += $count;
 
-        } while ($count === self::BATCH_SIZE);
+        } while ($count === $batchSize);
 
-        return $total;
+        return $totalCount;
     }
 }
